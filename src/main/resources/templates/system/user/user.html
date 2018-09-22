@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<link href="/ajax/libs/jquery-layout/jquery.layout-latest.css" th:href="@{/ajax/libs/jquery-layout/jquery.layout-latest.css}" rel="stylesheet"/>
+<link href="/ajax/libs/bootstrap-table/bootstrap-table.min.css" th:href="@{/ajax/libs/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet"/>
+<link href="/ajax/libs/jquery-ztree/3.5/css/metro/zTreeStyle.css" th:href="@{/ajax/libs/jquery-ztree/3.5/css/metro/zTreeStyle.css}" rel="stylesheet"/>
+
+<body class="gray-bg">
+	
+	<div class="container-div ui-layout-center">
+		<div class="row">
+			
+	        <!-- <div class="btn-group hidden-xs" id="toolbar" role="group">
+	        	<a class="btn btn-outline btn-success btn-rounded" onclick="$.operate.add()">
+	                <i class="fa fa-plus"></i> 新增
+	            </a>
+	            <a class="btn btn-outline btn-danger btn-rounded" onclick="$.operate.removeAll()">
+	                <i class="fa fa-trash-o"></i> 删除
+	            </a>
+	        </div> -->
+	        
+	        <div class="col-sm-12 select-table table-striped">
+			    <table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script th:src="@{/ajax/libs/jquery-layout/jquery.layout-latest.js}"></script>
+	<script th:src="@{/ajax/libs/bootstrap-table/bootstrap-table.min.js}"></script>
+	<script th:src="@{/ajax/libs/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
+	<script th:inline="javascript">
+		var prefix = ctx + "system/user"
+
+		$(document).ready(function(){
+			$('body').layout({ west__size: 185 });
+			queryUserList();
+		});
+
+		function queryUserList() {
+		    var options = {
+		        url: prefix + "/list",
+		        createUrl: prefix + "/add",
+		        updateUrl: prefix + "/edit/{id}",
+		        showUrl: "http://wx.pcloudhotel.cn/?id={id}",
+		        updatePUrl: prefix + "/editp/{id}",
+		        removeUrl: prefix + "/remove",
+		        exportUrl: prefix + "/export",
+		        sortName: "createTime",
+		        sortOrder: "desc",
+		        modalName: "用户",
+		        search: false,
+		        showExport: false,
+		        columns: [{
+		            checkbox: true
+		        },
+		        {
+		            field: 'openId',
+		            title: '用户ID'
+		        },
+		        {
+		            field: 'nickName',
+		            title: '球员微信昵称',
+		            sortable: true
+		        },
+		        {
+		            field: 'username',
+		            title: '用户名称'
+		        },
+		        {
+		            field: 'startTime',
+		            title: '创建时间',
+		            sortable: true
+		        },
+		        {
+		            field: 'level',
+		            title: '技术水平',
+		            sortable: false
+		        },
+		        {
+		            field: 'heigth',
+		            title: '身高',
+		            sortable: false
+		        },
+		        {
+		            field: 'gender',
+		            title: '性别',
+		            sortable: false
+		        },
+		        {
+		            field: 'action',
+		            title: '持拍',
+		            sortable: false
+		        },
+		        {
+		            field: 'backhand',
+		            title: '反手',
+		            sortable: false
+		        },
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		                var actions = [];
+		                actions.push('<a class="btn btn-success btn-xs " href="#" onclick="$.operate.show(\'' + row.openId + '\')"><i class="fa fa-edit"></i>查看球员信息</a> ');		     
+		                actions.push('<a class="btn btn-success btn-xs " href="#" onclick="$.operate.edit(\'' + row.openId + '\')"><i class="fa fa-edit"></i>编辑球员信息</a> ');
+		                actions.push('<a class="btn btn-info btn-xs " href="#" onclick="$.operate.editP(\'' + row.openId + '\')"><i class="fa fa-key"></i>操作项目信息</a>');
+		                actions.push('<a class="btn btn-danger btn-xs " href="#" onclick="$.operate.remove(\'' + row.openId + '\')"><i class="fa fa-remove"></i>删除</a> ');
+		                return actions.join('');
+		            }
+		        }]
+		    };
+		    $.table.init(options);
+		}
+		
+	</script>
+</body>
+</html>

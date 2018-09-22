@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<link th:href="@{/ajax/libs/iCheck/custom.css}" rel="stylesheet"/>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal" id="form-user-add">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+					   球员基本信息
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<select id="nickName" class="form-control m-b">
+			                    <option th:each="nick:${nickNames}" th:text="${nick}" th:value="${nick}"></option>
+			                </select>
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户名称：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="userName" id="userName" value="Transformer">
+						</div>
+					</div>
+				
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">性别：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<select id="gender" class="form-control m-b">
+			                    <option  value="1">男</option>
+			                    <option  value="2">女</option>
+			                    <option  value="0">保密</option>
+			                </select>
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">身高：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="heigth" id="heigth" value="175" placeholder="单位是cm">
+						</div>
+					</div>
+					
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">持拍：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="action" id="action" value="左手">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">反手：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="backhand" id="backhand" value="单">
+						</div>
+					</div>
+					
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">入队时间：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="startTime" id="startTime" value="2018-02-13" placeholder="格式是yyyy-MM-dd">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">技术水平：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="level" id="level" value="4.0">
+						</div>
+					</div>
+				</div> <!-- end to 基本信息 -->
+				
+				<div class="panel-heading">
+					<h3 class="panel-title">
+					   球员技术指标
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">正手：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+			                <input class="form-control" type="text" name="tech_forehand" id="tech_forehand">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">反手：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_backend" id="tech_backend">
+						</div>
+					</div>
+				
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">上旋：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_topspin" id="tech_topspin" >
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">反削：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_slice" id="tech_slice" >
+						</div>
+					</div>
+					
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">发球：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_serve" id="tech_serve">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">接发：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_return" id="tech_return">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">正截击：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_volley_f" id="tech_volley_f">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">反截击：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_volley_b" id="tech_volley_b">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">高压：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_drop" id="tech_drop">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">挑高球：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_lob" id="tech_lob">
+						</div>
+						
+					</div>
+				</div> <!-- end to 技术指标 -->
+				
+				<div class="panel-heading">
+					<h3 class="panel-title">
+					   发展计划
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="col-sm-2 control-label"style="padding-left: 2px; padding-right: 2px;">日期：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="dt_date" id="dt_date" value="2018-04">
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							   技术目标：
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">项目A：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="td_description1" id="td_description1">正手截击：加大截击深度，争取3个月达到命中率60%</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="td_result1" id="td_result1">
+								</div>
+							</div>
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">项目B：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="td_description2" id="td_description2">反手削球：学习、练习、熟练，争取3个月达到命中率60%</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="td_result2" id="td_result2">
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							   单打战术 ：
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">套路A：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="st_description1" id="st_description1">底线攻击为主</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="st_result1" id="st_result1">
+								</div>
+							</div>
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">套路B：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="st_description2" id="st_description2">攻击浅球，随上</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="st_result2" id="st_result2">
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							   双打战术：
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">套路A：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="dt_description1" id="dt_description1">发球局：发大角度的外角球，随上；攻击较浅球随上
+									</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="dt_result1" id="dt_result1" placeholder="基本达标">
+								</div>
+							</div>
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">套路B：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="dt_description2" id="dt_description2">接发局：攻击对方的二发发，上网；攻击浅球随上；底线拉上旋</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="dt_result2" id="dt_result2">
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							   比赛心理 ：
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">项目A：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="pc_description1" id="pc_description1">横下一条心，底线磨够5拍不失误</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="pc_result1" id="pc_result1">
+								</div>
+							</div>
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">项目B：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="pc_description2" id="pc_description2"></textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="pc_result2" id="pc_result2">
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+		
+			<div class="form-group">
+				<div class="form-control-static col-sm-offset-9">
+					<button type="submit" class="btn btn-primary">提交</button>
+					<button onclick="$.modal.close()" class="btn btn-danger" type="button">关闭</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div th:include="include::footer"></div>
+	<script th:src="@{/ajax/libs/iCheck/icheck.min.js}"></script>
+	<script th:src="@{/ajax/libs/select/select2.js}"></script>
+	<script>
+        $("#form-user-add").validate({
+        	rules:{
+        		userName:{
+        			required:true,
+        		}
+        		
+        	},
+        	submitHandler:function(form){
+        		add();
+        	}
+        });
+
+        function add() {
+        	var userName = $("input[name='userName']").val();
+        	var nickName = $("#nickName option:selected").val();
+        	var heigth = $("input[name='heigth']").val();
+        	var gender = $("#gender option:selected").val();
+        	var action = $("input[name='action']").val();
+        	var backhand = $("input[name='backhand']").val();
+        	var level = $("input[name='level']").val();
+        	var startTime = $("input[name='startTime']").val();
+        	var dt_date = $("input[name='dt_date']").val();
+        	var td_description1 = $("#td_description1").val();
+        	var td_result1 = $("input[name='td_result1']").val();
+        	var td_description2 = $("#td_description2").val();
+        	var td_result2 = $("input[name='td_result2']").val();
+        	var dt_description1 = $("#dt_description1").val();
+        	var dt_result1 = $("input[name='dt_result1']").val();
+        	var dt_description2 = $("#dt_description2").val();
+        	var dt_result2 = $("input[name='dt_result2']").val();
+        	var st_description1 = $("#st_description1").val();
+        	var st_result1 = $("input[name='st_result1']").val();
+        	var st_description2 = $("#st_description2").val();
+        	var st_result2 = $("input[name='st_result2']").val();
+        	var pc_description1 = $("#pc_description1").val();
+        	var pc_result1 = $("input[name='pc_result1']").val();
+        	var pc_description2 = $("#pc_description2").val();
+        	var pc_result2 = $("input[name='pc_result2']").val();
+        	var tech_forehand = $("input[name='tech_forehand']").val();
+        	var tech_backend = $("input[name='tech_backend']").val();
+        	var tech_topspin = $("input[name='tech_topspin']").val();
+        	var tech_slice = $("input[name='tech_slice']").val();
+        	var tech_serve = $("input[name='tech_serve']").val();
+        	var tech_return = $("input[name='tech_return']").val();
+        	var tech_volley_b = $("input[name='tech_volley_b']").val();
+        	var tech_volley_f = $("input[name='tech_volley_f']").val();
+        	var tech_lob = $("input[name='tech_lob']").val();
+        	var tech_drop = $("input[name='tech_drop']").val();
+        	$.ajax({
+        		cache : false,
+        		type : "POST",
+        		url : ctx + "system/user/add",
+        		data : {
+        			"userName": userName,
+        			"nickName": nickName,
+        			"heigth": heigth,
+        			"gender": gender,
+        			"action": action,
+        			"backhand": backhand,
+        			"level": level,
+        			"startTime": startTime,
+        			"dt_date": dt_date,
+        			"td_description1": td_description1,
+        			"td_result1": td_result1,
+        			"td_description2": td_description2,
+        			"td_result2": td_result2,
+        			"dt_description1": dt_description1,
+        			"dt_result1": dt_result1,
+        			"dt_description2": dt_description2,
+        			"dt_result2": dt_result2,
+        			"st_description1": st_description1,
+        			"st_result1": st_result1,
+        			"st_description2": st_description2,
+        			"st_result2": st_result2,
+        			"pc_description1": pc_description1,
+        			"pc_result1": pc_result1,
+        			"pc_description2": pc_description2,
+        			"pc_result2": pc_result2,
+        			"tech_forehand": tech_forehand,
+        			"tech_backend": tech_backend,
+        			"tech_topspin": tech_topspin,
+        			"tech_slice": tech_slice,
+        			"tech_serve": tech_serve,
+        			"tech_return": tech_return,
+        			"tech_volley_b": tech_volley_b,
+        			"tech_volley_f": tech_volley_f,
+        			"tech_lob": tech_lob,
+        			"tech_drop": tech_drop        			
+        		},
+        		async : false,
+        		error : function(request) {
+        			$.modal.alertError("系统错误");
+        		},
+        		success : function(data) {
+        			$.operate.saveSuccess(data);
+        		}
+        	});
+        }
+    </script>
+</body>
+</html>

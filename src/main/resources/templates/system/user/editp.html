@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<meta charset="utf-8">
+<head th:include="include :: header">
+</head>
+<link th:href="@{/ajax/libs/iCheck/custom.css}" rel="stylesheet"/>
+<link th:href="@{/ajax/libs/datapicker/bootstrap-datetimepicker.min.css}" rel="stylesheet"/>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal" id="form-user-add">
+			<div class="panel panel-success">								
+				<div class="panel-heading">
+					<h3 class="panel-title">
+					   发展计划
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label class="col-sm-2 control-label"style="padding-left: 2px; padding-right: 2px;">日期：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">			
+							<input class="form-control form_datetime" type="text" name="dt_date" id="dt_date" th:value="${{month}}" onchange="dateOnChange();">
+						    <input class="form-control" type="hidden" name="openId" id="openId" th:value="${openId}">
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							   技术目标：
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">项目A：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="td_description1" id="td_description1" th:inline="text">[[${user?.td_description1}?${user?.td_description1}:'正手截击：加大截击深度，争取3个月达到命中率60%']]</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="td_result1" id="td_result1" th:value="${user?.td_result1}? ${user?.td_result1}:'完成'">
+								</div>
+							</div>
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">项目B：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="td_description2" id="td_description2" th:inline="text">[[${user?.td_description2}?${user?.td_description2}:'反手削球：学习、练习、熟练，争取3个月达到命中率60%']]</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="td_result2" id="td_result2" th:value="${user?.td_result2}? ${user?.td_result2}:'完成'">
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							   单打战术 ：
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">套路A：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="st_description1" id="st_description1" th:inline="text">[[${user?.st_description1}?${user?.st_description1}:'底线攻击为主']]</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="st_result1" id="st_result1" th:value="${user?.st_result1}? ${user?.st_result1}:'未开始'">
+								</div>
+							</div>
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">套路B：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="st_description2" id="st_description2" th:inline="text">[[${user?.st_description2}?${user?.st_description2}:'攻击浅球，随上']]</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="st_result2" id="st_result2" th:value="${user?.st_result2}? ${user?.st_result2}:'未开始'">
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							   双打战术：
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">套路A：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="dt_description1" id="dt_description1" th:inline="text">[[${user?.dt_description1}?${user?.dt_description1}:'发球局：发大角度的外角球，随上；攻击较浅球随上']]</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="dt_result1" id="dt_result1" th:value="${user?.dt_result1}? ${user?.dt_result1}:'未开始'">
+								</div>
+							</div>
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">套路B：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="dt_description2" id="dt_description2" th:inline="text">[[${user?.dt_description2}?${user?.dt_description2}:'接发局：攻击对方的二发发，上网；攻击浅球随上；底线拉上旋']]</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="dt_result2" id="dt_result2" th:value="${user?.dt_result2}? ${user?.dt_result2}:'未开始'">
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							   比赛心理 ：
+							</h4>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">项目A：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="pc_description1" id="pc_description1" th:inline="text">[[${user?.pc_description1}?${user?.pc_description1}:'横下一条心，底线磨够5拍不失误']]</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="pc_result1" id="pc_result1" th:value="${user?.pc_result1}? ${user?.pc_result1}:'未开始'">
+								</div>
+							</div>
+							<div class="form-group">
+								 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">项目B：</label>
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<textarea class="form-control" rows="3" name="pc_description2" id="pc_description2" th:inline="text">[[${user?.pc_description2}?${user?.pc_description2}:'']]</textarea>
+								</div>
+								<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">结果：</label>					
+								<div class="col-sm-4" style="padding-left: 2px;">
+									<input class="form-control" type="text" name="pc_result2" id="pc_result2" th:value="${user?.pc_result2}? ${user?.pc_result2}:'未开始'">
+								</div>
+							</div>
+						</div>
+						<input class="form-control" type="hidden" name="td_id1" id="td_id1" th:value="${user?.td_id1}? ${user?.td_id1}">
+						<input class="form-control" type="hidden" name="td_id2" id="td_id2" th:value="${user?.td_id2}? ${user?.td_id2}">
+						<input class="form-control" type="hidden" name="st_id1" id="st_id1" th:value="${user?.st_id1}? ${user?.st_id1}">
+						<input class="form-control" type="hidden" name="st_id2" id="st_id2" th:value="${user?.st_id2}? ${user?.st_id2}">
+						<input class="form-control" type="hidden" name="dt_id1" id="dt_id1" th:value="${user?.dt_id1}? ${user?.dt_id1}">
+						<input class="form-control" type="hidden" name="dt_id2" id="dt_id2" th:value="${user?.dt_id2}? ${user?.dt_id2}">
+						<input class="form-control" type="hidden" name="pc_id1" id="pc_id1" th:value="${user?.pc_id1}? ${user?.pc_id1}">
+						<input class="form-control" type="hidden" name="pc_id2" id="pc_id2" th:value="${user?.pc_id2}? ${user?.pc_id2}">
+					</div>
+				</div>
+			</div>
+					
+			<div class="form-group">
+				<div class="form-control-static col-sm-offset-9">
+					<button type="submit" class="btn btn-primary">提交</button>
+					<button onclick="$.modal.close()" class="btn btn-danger" type="button">关闭</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div th:include="include::footer"></div>
+	<script th:src="@{/ajax/libs/iCheck/icheck.min.js}"></script>
+	<script th:src="@{/ajax/libs/datapicker/bootstrap-datetimepicker.min.js}" charset="UTF-8"></script>
+	<script th:src="@{/ajax/libs/select/select2.js}"></script>
+	<!-- <script type="text/javascript">
+	jQuery(function($) {
+	    
+	})
+	</script> -->
+	<script>
+	$("#dt_date").datetimepicker({
+		 format: 'yyyy-mm',
+         autoclose: true,
+         startView: 'year', //这里就设置了默认视图为年视图
+         minView: 'year', //设置最小视图为年视图
+         maxView:'year',
+         forceParse: 0 ///选择后直接带回；要加！
+		});
+        $("#form-user-add").validate({        	
+        	submitHandler:function(form){
+        		add();
+        	}
+        });
+
+        function dateOnChange(){        	
+        	var date = $("input[name='dt_date']").val();        	
+        	var openId = $("input[name='openId']").val();
+        	$.ajax({
+        		cache : false,
+        		type : "GET",
+        		url : ctx + "system/user/queryprojectbydate",
+        		data : {
+        			"date": date,
+        			"openId": openId  			
+        		},
+        		async : false,
+        		error : function(request) {
+        			$.modal.alertError("系统错误");
+        		},
+        		success : function(data) {        		
+        			if(data.td_description1 !== null){
+        				$("#td_description1").val(data.td_description1);
+                    	$("input[name='td_result1']").val(data.td_result1);
+                    	$("#td_description2").val(data.td_description2);
+                    	$("input[name='td_result2']").val(data.td_result2);
+                    	$("#dt_description1").val(data.dt_description1);
+                    	$("input[name='dt_result1']").val(data.dt_result1);
+                    	$("#dt_description2").val(data.dt_description2);
+                    	$("input[name='dt_result2']").val(data.dt_result2);
+                    	$("#st_description1").val(data.st_description1);
+                    	$("input[name='st_result1']").val(data.st_result1);
+                    	$("#st_description2").val(data.st_description2);
+                    	$("input[name='st_result2']").val(data.st_result2);
+                    	$("#pc_description1").val(data.pc_description1);
+                    	$("input[name='pc_result1']").val(data.pc_result1);
+                    	$("#pc_description2").val(data.pc_description2);
+                    	$("input[name='pc_result2']").val(data.pc_result2);
+                    	$("input[name='td_id1']").val(data.td_id1);
+                    	$("input[name='td_id2']").val(data.td_id2);
+                    	$("input[name='st_id1']").val(data.st_id1);
+                    	$("input[name='st_id2']").val(data.st_id2);
+                    	$("input[name='dt_id1']").val(data.dt_id1);
+                    	$("input[name='dt_id2']").val(data.dt_id2);
+                    	$("input[name='pc_id1']").val(data.pc_id1);
+                    	$("input[name='pc_id2']").val(data.pc_id2);
+        			}else{
+        				$("#td_description1").val("正手截击：加大截击深度，争取3个月达到命中率60%");
+                    	$("input[name='td_result1']").val("圆满完成");
+                    	$("#td_description2").val("反手削球：学习、练习、熟练，争取3个月达到命中率60%");
+                    	$("input[name='td_result2']").val("仍需练习");
+                    	$("#dt_description1").val("发球局：发大角度的外角球，随上；攻击较浅球随上");
+                    	$("input[name='dt_result1']").val("仍需练习");
+                    	$("#dt_description2").val("接发局：攻击对方的二发发，上网；攻击浅球随上；底线拉上旋");
+                    	$("input[name='dt_result2']").val("仍需练习");
+                    	$("#st_description1").val("底线攻击为主");
+                    	$("input[name='st_result1']").val("仍需练习");
+                    	$("#st_description2").val("攻击浅球，随上");
+                    	$("input[name='st_result2']").val("仍需练习");
+                    	$("#pc_description1").val("横下一条心，底线磨够5拍不失误");
+                    	$("input[name='pc_result1']").val("仍需练习");
+                    	$("#pc_description1").val("");
+                    	$("input[name='pc_result1']").val("");
+        			}
+        		}
+        	});
+        }
+        function add() {
+        	var dt_date = $("input[name='dt_date']").val();
+        	var td_description1 = $("#td_description1").val();
+        	var td_result1 = $("input[name='td_result1']").val();
+        	var td_description2 = $("#td_description2").val();
+        	var td_result2 = $("input[name='td_result2']").val();
+        	var dt_description1 = $("#dt_description1").val();
+        	var dt_result1 = $("input[name='dt_result1']").val();
+        	var dt_description2 = $("#dt_description2").val();
+        	var dt_result2 = $("input[name='dt_result2']").val();
+        	var st_description1 = $("#st_description1").val();
+        	var st_result1 = $("input[name='st_result1']").val();
+        	var st_description2 = $("#st_description2").val();
+        	var st_result2 = $("input[name='st_result2']").val();
+        	var pc_description1 = $("#pc_description1").val();
+        	var pc_result1 = $("input[name='pc_result1']").val();
+        	var pc_description2 = $("#pc_description2").val();
+        	var pc_result2 = $("input[name='pc_result2']").val();
+        	var openId = $("input[name='openId']").val();
+        	var td_id1 = $("input[name='td_id1']").val()==""?0:$("input[name='td_id1']").val();
+        	var td_id2 = $("input[name='td_id2']").val()==""?0:$("input[name='td_id2']").val();
+        	var st_id1 = $("input[name='st_id1']").val()==""?0:$("input[name='st_id1']").val();
+        	var st_id2 = $("input[name='st_id2']").val()==""?0:$("input[name='st_id2']").val();
+        	var dt_id1 = $("input[name='dt_id1']").val()==""?0:$("input[name='dt_id1']").val();
+        	var dt_id2 = $("input[name='dt_id2']").val()==""?0:$("input[name='dt_id2']").val();
+        	var pc_id1 = $("input[name='pc_id1']").val()==""?0:$("input[name='pc_id1']").val();
+        	var pc_id2 = $("input[name='pc_id2']").val()==""?0:$("input[name='pc_id2']").val();
+        	$.ajax({
+        		cache : false,
+        		type : "POST",
+        		url : ctx + "system/user/editp",
+        		data : {
+        			"dt_date": dt_date,
+        			"td_description1": td_description1,
+        			"td_result1": td_result1,
+        			"td_description2": td_description2,
+        			"td_result2": td_result2,
+        			"dt_description1": dt_description1,
+        			"dt_result1": dt_result1,
+        			"dt_description2": dt_description2,
+        			"dt_result2": dt_result2,
+        			"st_description1": st_description1,
+        			"st_result1": st_result1,
+        			"st_description2": st_description2,
+        			"st_result2": st_result2,
+        			"pc_description1": pc_description1,
+        			"pc_result1": pc_result1,
+        			"pc_description2": pc_description2,
+        			"pc_result2": pc_result2,
+        			"td_id1" : td_id1,
+                	"td_id2" : td_id2,
+                	"st_id1" : st_id1,
+                	"st_id2" : st_id2,
+                	"dt_id1" : dt_id1,
+                	"dt_id2" : dt_id2,
+                	"pc_id1" : pc_id1,
+                	"pc_id2" : pc_id2,
+        			"openId": openId        		    			
+        		},
+        		async : false,
+        		error : function(request) {
+        			$.modal.alertError("系统错误");
+        		},
+        		success : function(data) {
+        			$.operate.saveSuccess(data);
+        		}
+        	});
+        }
+    </script>
+</body>
+</html>

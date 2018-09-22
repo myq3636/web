@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" >
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<link th:href="@{/ajax/libs/iCheck/custom.css}" rel="stylesheet"/>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal" id="form-user-add">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+					   球员基本信息
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="nickName" id="nickName" th:value="${user.nickName}" readonly="readonly">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户名称：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="username" id="username" th:value="${user.username}">
+						</div>
+					</div>
+				
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">性别：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+						    <input type="hidden" id ="selectgender" th:value="#{user.gender}"/>
+							<select id="gender" class="form-control m-b">
+			                    <option  value="1">男</option>
+			                    <option  value="2">女</option>
+			                    <option  value="0">保密</option>
+			                </select>
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">身高：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="heigth" id="heigth" th:value="${user.heigth}" placeholder="单位是cm">
+						</div>
+					</div>
+					
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">持拍：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="action" id="action" th:value="${user.action}">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">反手：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="backhand" id="backhand" th:value="${user.backhand}">
+						</div>
+					</div>
+					
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">入队时间：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="startTime" id="startTime" th:value="${user.startTime}" placeholder="格式是yyyy-MM-dd">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">技术水平：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="level" id="level" th:value="${user.level}">
+						</div>
+					</div>
+				</div> <!-- end to 基本信息 -->
+				
+				<div class="panel-heading">
+					<h3 class="panel-title">
+					   球员技术指标
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">正手：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+			                <input class="form-control" type="text" name="tech_forehand" id="tech_forehand" th:value="${user.tech_forehand}">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">反手：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_backend" id="tech_backend" th:value="${user.tech_forehand}">
+						</div>
+					</div>
+				
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">上旋：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_topspin" id="tech_topspin" th:value="${user.tech_topspin}">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">反削：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_slice" id="tech_slice" th:value="${user.tech_slice}">
+						</div>
+					</div>
+					
+					<div class="form-group">
+					<!-- <div class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">用户昵称：</div>
+					 -->
+						 <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">发球：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_serve" id="tech_serve"  th:value="${user.tech_serve}">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">接发：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_return" id="tech_return"  th:value="${user.tech_return}">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">正截击：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_volley_f" id="tech_volley_f" th:value="${user.tech_volley_f}">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">反截击：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_volley_b" id="tech_volley_b" th:value="${user.tech_volley_b}">
+						</div>
+					</div>
+					
+					<div class="form-group">
+					    <label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">高压：</label>					
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_drop" id="tech_drop" th:value="${user.tech_drop}">
+						</div>
+						<label class="col-sm-2 control-label" style="padding-left: 2px; padding-right: 2px;">挑高球：</label>
+						<div class="col-sm-4" style="padding-left: 2px;">
+							<input class="form-control" type="text" name="tech_lob" id="tech_lob" th:value="${user.tech_lob}">
+						</div>
+						
+					</div>
+				</div> <!-- end to 技术指标 -->																			
+				</div>
+					
+			<div class="form-group">
+				<div class="form-control-static col-sm-offset-9">
+					<button type="submit" class="btn btn-primary">提交</button>
+					<button onclick="$.modal.close()" class="btn btn-danger" type="button">关闭</button>
+				</div>
+			</div>			
+		</form>
+	</div>
+	<div th:include="include::footer"></div>
+	<script th:src="@{/ajax/libs/iCheck/icheck.min.js}"></script>
+	<script th:src="@{/ajax/libs/select/select2.js}"></script>
+	<script>
+		$(document).ready(function(){  
+		     var key=$("#selectgender").val();
+		     //根据值让option选中 
+		     $("#gender option[value='"+key+"']").attr("selected","selected"); 
+		});
+        $("#form-user-add").validate({
+        	rules:{
+        		userName:{
+        			required:true,
+        		}
+        		
+        	},
+        	submitHandler:function(form){
+        		add();
+        	}
+        });
+
+        function add() {
+        	var userName = $("input[name='username']").val();
+        	var nickName = $("input[name='nickName']").val();
+        	var heigth = $("input[name='heigth']").val();
+        	var gender = $("#gender option:selected").val();
+        	var action = $("input[name='action']").val();
+        	var backhand = $("input[name='backhand']").val();
+        	var level = $("input[name='level']").val();
+        	var startTime = $("input[name='startTime']").val();
+        	var tech_forehand = $("input[name='tech_forehand']").val();
+        	var tech_backend = $("input[name='tech_backend']").val();
+        	var tech_topspin = $("input[name='tech_topspin']").val();
+        	var tech_slice = $("input[name='tech_slice']").val();
+        	var tech_serve = $("input[name='tech_serve']").val();
+        	var tech_return = $("input[name='tech_return']").val();
+        	var tech_volley_b = $("input[name='tech_volley_b']").val();
+        	var tech_volley_f = $("input[name='tech_volley_f']").val();
+        	var tech_lob = $("input[name='tech_lob']").val();
+        	var tech_drop = $("input[name='tech_drop']").val();
+        	$.ajax({
+        		cache : false,
+        		type : "POST",
+        		url : ctx + "system/user/edit",
+        		data : {
+        			"username": userName,
+        			"nickName": nickName,
+        			"heigth": heigth,
+        			"gender": gender,
+        			"action": action,
+        			"backhand": backhand,
+        			"level": level,
+        			"startTime": startTime,        			
+        			"tech_forehand": tech_forehand,
+        			"tech_backend": tech_backend,
+        			"tech_topspin": tech_topspin,
+        			"tech_slice": tech_slice,
+        			"tech_serve": tech_serve,
+        			"tech_return": tech_return,
+        			"tech_volley_b": tech_volley_b,
+        			"tech_volley_f": tech_volley_f,
+        			"tech_lob": tech_lob,
+        			"tech_drop": tech_drop        			
+        		},
+        		async : false,
+        		error : function(request) {
+        			$.modal.alertError("系统错误");
+        		},
+        		success : function(data) {
+        			$.operate.saveSuccess(data);
+        		}
+        	});
+        }
+    </script>
+</body>
+</html>

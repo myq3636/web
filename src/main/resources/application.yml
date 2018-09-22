@@ -1,0 +1,114 @@
+server:
+  port: 8000
+wx:
+  token: token
+  appid: wx4df9b77cffd0bf54
+#  appid: wxa4c162a7196e4bde
+  appsecret: e57c7634a32761b37f3c359fb1b06a9c
+#  appsecret: d5a4b747bd7e43df175830efc1e32514
+#  callback-url: http://tennisclub.jxintelink.com/
+  callback-url: http://wx.pcloudhotel.cn/
+#  callback-url: http://9k976i.natappfree.cc/
+  welcome: 感谢关注！
+  admin: 联系管理员添加个人信息
+  user:
+    headImagesPath: /log/
+  mvc:
+    interceptor:
+      include: /wx
+#用户配置
+user:
+  password:
+    #密码错误{maxRetryCount}次锁定10分钟
+    maxRetryCount: 5
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
+    prefix: classpath:/templates/
+  messages:
+    #国际化资源文件路径
+    basename: i18n/messages
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.104.2.51:3306/tennis?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
+#    url: jdbc:mysql://10.202.9.22:3306/ry
+    username: root
+    password: jxzl2016
+    
+    # Druid连接池配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    #初始化
+    initialSize: 3
+    #最小
+    maxActive: 20
+    #最大
+    minIdle: 3
+    #最大连接等待超时时间
+    maxWait: 60000
+    #配置间隔多久才进行一次检测,检测需要关闭的空闲连接,单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    #配置一个连接在池中最小生存的时间,单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1 from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false 
+    #打开PSCache,并且指定每个连接PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    #配置监控统计拦截的filters,去掉后监控界面sql将无法统计,'wall'用于防火墙
+    filters: stat, wall, log4j
+    #通过connectionProperties属性来打开mergeSql功能,慢SQL记录
+    #connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  
+  # spring data jpa配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    format_sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+
+
+# PageHelper
+pagehelper: 
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql 
+# Shiro
+shiro:
+  user:
+    # 登录地址
+    loginUrl: /login
+    # 权限认证失败地址
+    unauthorizedUrl: /unauth
+    # 首页地址
+    indexUrl: /main
+    # 验证码开关
+    captchaEnabled: true
+    # 验证码类型 math 数组计算 char 字符
+    captchaType: char
+  cookie:
+    # 设置Cookie的域名 默认空，即当前访问的域名
+    domain: 
+    # 设置cookie的有效访问路径
+    path: /
+    # 设置HttpOnly属性
+    httpOnly: true
+    # 设置Cookie的过期时间，天为单位
+    maxAge: 30
+  session:
+    # Session超时时间（默认30分钟）
+    expireTime: 30
+    # 同步session到数据库的周期（默认1分钟）
+    dbSyncPeriod: 30
+    # 相隔多久检查一次session的有效性，默认就是10分钟
+    validationInterval: 10
